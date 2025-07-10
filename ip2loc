@@ -1,0 +1,37 @@
+#!/bin/bash
+
+IP=$1
+IP1=`echo $IP | awk -v FS="." '{print $1}'`
+IP2=`echo $IP | awk -v FS="." '{print $2}'`
+IP3=`echo $IP | awk -v FS="." '{print $3}'`
+IP4=`echo $IP | awk -v FS="." '{print $4}'`
+IP_MARK8="$IP1.0.0.0/8"
+IP_MARK16="$IP1.$IP2.0.0/16"
+IP_MARK24="$IP1.$IP2.$IP3.0/24"
+IP_MARK32="$IP1.$IP2.$IP3.$IP4/32"
+
+Region=`grep ",$IP_MARK8," /etc/geo/data/mark/iana-all-mark8.ipv4.ipset | awk -v FS="," '{print $2}'`
+if [[ ${#Region} -gt 0 ]];then
+    echo $Region
+    exit
+fi
+
+Region=`grep ",$IP_MARK32," /etc/geo/data/mark/iana-all-mark32.ipv4.ipset | awk -v FS="," '{print $2}'`
+if [[ ${#Region} -gt 0 ]];then
+    echo $Region
+    exit
+fi
+
+Region=`grep ",$IP_MARK16," /etc/geo/data/mark/iana-all-mark16.ipv4.ipset | awk -v FS="," '{print $2}'`
+if [[ ${#Region} -gt 0 ]];then
+    echo $Region
+    exit
+fi
+
+Region=`grep ",$IP_MARK24," /etc/geo/data/mark/iana-all-mark24.ipv4.ipset | awk -v FS="," '{print $2}'`
+if [[ ${#Region} -gt 0 ]];then
+    echo $Region
+    exit
+fi
+
+echo "un"

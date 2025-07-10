@@ -8,7 +8,11 @@ ip to location bash
 修改脚本内的路径，使之与实际相符。
 原始路径：
 /etc/geo/data/mark/iana-all-mark8.ipv4.ipset
+
 /etc/geo/data/mark/iana-all-mark16.ipv4.ipset
+
 /etc/geo/data/mark/iana-all-mark24.ipv4.ipset
+
 /etc/geo/data/mark/iana-all-mark32.ipv4.ipset
+
 
